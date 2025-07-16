@@ -169,7 +169,7 @@ export default function MaintenancePage() {
         {/* Footer */}
         <div className="bg-gray-50 dark:bg-gray-700 px-6 py-4 border-t border-gray-200 dark:border-gray-600">
           <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; 2025 All rights reserved. AL Primus.
           </p>
         </div>
       </div>
