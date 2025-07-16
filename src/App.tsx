@@ -1,34 +1,33 @@
-import { ChevronRight, Clock, Mail, Rocket, Wrench } from "lucide-react";
-import { useEffect, useState } from "react";
+"use client";
+import { useState, useEffect } from 'react';
+import { Wrench, Clock, Rocket, Mail, ChevronRight } from 'lucide-react';
 
 export default function MaintenancePage() {
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0,
+    seconds: 0
   });
 
   // Set your maintenance end date here
   useEffect(() => {
-    const maintenanceEnd = new Date("2025-07-15T00:00:00").getTime();
-
+    const maintenanceEnd = new Date('2025-07-17T19:00:00').getTime();
+    
     const interval = setInterval(() => {
-      const now = Date.now();
+      const now = new Date().getTime();
       const distance = maintenanceEnd - now;
-
+      
       if (distance <= 0) {
         clearInterval(interval);
         return;
       }
-
+      
       setCountdown({
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        ),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
       });
     }, 1000);
 
@@ -36,18 +35,16 @@ export default function MaintenancePage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 transition-colors duration-300">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-gray-900 dark:to-indigo-900 flex flex-col items-center justify-center p-4 transition-colors duration-300">
       <div className="max-w-4xl w-full bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-all hover:shadow-2xl hover:-translate-y-1 duration-300">
         {/* Header */}
-        <div className="bg-primary dark:bg-green-800 p-6 md:p-8 text-white">
+        <div className="bg-indigo-600 dark:bg-indigo-800 p-6 md:p-8 text-white">
           <div className="flex items-center gap-4">
-            <div className="p-3 rounded-full bg-white/20 animate-pulse">
+            <div className="p-3 rounded-full bg-white/20 animate-pulse hidden sm:inline">
               <Wrench className="h-8 w-8" />
             </div>
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold">
-                Scheduled Maintenance
-              </h1>
+              <h1 className="text-sm md:text-3xl font-bold">Scheduled Maintenance</h1>
               <p className="text-white/90">We're making things even better</p>
             </div>
           </div>
@@ -62,43 +59,57 @@ export default function MaintenancePage() {
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   Our website is currently undergoing scheduled maintenance
                 </h2>
-                <p className="text-muted-foreground dark:text-gray-300">
-                  We apologize for the inconvenience but we're performing some
-                  maintenance to improve your experience. We'll be back online
-                  shortly!
+                <p className="text-gray-600 dark:text-gray-300">
+                  We apologize for the inconvenience but we're performing some maintenance to improve your experience. 
+                  We'll be back online shortly!
                 </p>
               </div>
 
               {/* Countdown */}
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
                 <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 mb-3">
                   <Clock className="h-4 w-4" />
-                  <span className="text-sm font-medium">
-                    Estimated time remaining
-                  </span>
+                  <span className="text-sm font-medium">Estimated time remaining</span>
                 </div>
                 <div className="grid grid-cols-4 gap-2">
                   {Object.entries(countdown).map(([unit, value]) => (
-                    <div
-                      className="bg-primary/5 rounded-lg p-3 text-center transition-all hover:scale-105 duration-200"
-                      key={unit}
+                    <div 
+                      key={unit} 
+                      className="bg-indigo-50 dark:bg-gray-600 rounded-lg p-3 text-center transition-all hover:scale-105 duration-200"
                     >
-                      <div className="text-2xl font-bold text-primary">
-                        {value.toString().padStart(2, "0")}
+                      <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                        {value.toString().padStart(2, '0')}
                       </div>
-                      <div className="text-xs text-muted-foreground uppercase">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 uppercase">
                         {unit}
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
+
+              {/* Progress Bar */}
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                  <span>Progress</span>
+                  <span>50%</span>
+                </div>
+                <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500 ease-out" 
+                    style={{ width: '50%' }}
+                  ></div>
+                </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Implementing new features and performance improvements...
+                </p>
+              </div>
             </div>
 
             {/* Updates Card */}
-            <div className="md:w-1/3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 p-5 transition-all hover:shadow-md">
+            <div className="md:w-1/3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-5 transition-all hover:shadow-md">
               <h3 className="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <Rocket className="h-4 w-4 text-primary" />
+                <Rocket className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
                 What's New
               </h3>
               <ul className="space-y-4">
@@ -106,25 +117,23 @@ export default function MaintenancePage() {
                   {
                     title: "Performance upgrades",
                     desc: "Faster page loads",
-                    color: "bg-orange-500",
+                    color: "bg-indigo-500"
                   },
                   {
                     title: "New dashboard",
                     desc: "Improved user experience",
-                    color: "bg-yellow-500",
+                    color: "bg-purple-500"
                   },
                   {
                     title: "Security updates",
                     desc: "Enhanced protection",
-                    color: "bg-red-500",
-                  },
-                ].map((item) => (
-                  <li className="flex items-start gap-2 group" key={item.title}>
-                    <div
-                      className={`mt-1 h-2 w-2 rounded-full ${item.color} transition-all group-hover:scale-150`}
-                    />
+                    color: "bg-pink-500"
+                  }
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-2 group">
+                    <div className={`mt-1 h-2 w-2 rounded-full ${item.color} transition-all group-hover:scale-150`}></div>
                     <div>
-                      <p className="text-sm font-medium text-secondary group-hover:text-primary transition-colors">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                         {item.title}
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -138,30 +147,30 @@ export default function MaintenancePage() {
           </div>
 
           {/* Contact Card */}
-          <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-5 transition-all hover:shadow-md">
+          {/* <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-5 transition-all hover:shadow-md">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-full bg-primary/10">
-                  <Mail className="h-5 w-5 text-primary" />
+                <div className="p-2 rounded-full bg-indigo-100 dark:bg-indigo-900/30">
+                  <Mail className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-secondary">
-                    Need immediate assistance?
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Contact our support team
-                  </p>
+                  <h3 className="font-medium text-gray-900 dark:text-white">Need immediate assistance?</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Contact our support team</p>
                 </div>
               </div>
-              <button
-                className="flex items-center gap-1 text-sm font-medium text-primary hover:text-secondary transition-colors group"
-                type="button"
-              >
-                Contact Support
+              <button className="flex items-center gap-1 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors group">
+                Contact Support 
                 <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
-          </div>
+          </div> */}
+        </div>
+
+        {/* Footer */}
+        <div className="bg-gray-50 dark:bg-gray-700 px-6 py-4 border-t border-gray-200 dark:border-gray-600">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+          </p>
         </div>
       </div>
     </div>
