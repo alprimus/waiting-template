@@ -92,12 +92,12 @@ export default function MaintenancePage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
                   <span>Progress</span>
-                  <span>50%</span>
+                  <span>44%</span>
                 </div>
                 <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500 ease-out" 
-                    style={{ width: '50%' }}
+                    style={{ width: '44%' }}
                   ></div>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
