@@ -106,7 +106,7 @@ export default function MaintenancePage() {
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300">
                   We apologize for the inconvenience but we're performing some maintenance to improve your experience. 
-                  We'll be back online shortly! The maintenance is expected to complete by July 17, 2025 at 7:00 PM UTC.
+                  We'll be back online shortly! The maintenance is expected to complete by July 17, 2025 at 8:00 PM UTC.
                 </p>
               </div>
 
