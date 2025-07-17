@@ -137,12 +137,12 @@ export default function MaintenancePage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
                   <span>Progress</span>
-                  <span>63%</span>
+                  <span>81%</span>
                 </div>
                 <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500 ease-out" 
-                    style={{ width: `63%` }}
+                    style={{ width: `81%` }}
                   ></div>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -150,7 +150,7 @@ export default function MaintenancePage() {
                    progress < 70 ? "Implementing new features and performance improvements..." : 
                    progress < 90 ? "Running system tests and optimizations..." : 
                    "Finalizing updates and preparing for launch..."} */}
-                   Implementing new features and performance improvements...
+                   Running system tests and optimizations...
                 </p>
               </div>
 
