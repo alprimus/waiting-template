@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { Wrench, Clock, Rocket, Mail, ChevronRight } from 'lucide-react';
+import { Wrench, Clock, Rocket } from 'lucide-react';
 
 export default function MaintenancePage() {
   const [countdown, setCountdown] = useState({
