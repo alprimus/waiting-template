@@ -107,16 +107,16 @@ export default function MaintenancePage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
                   <span>Progress</span>
-                  <span>{Math.round(progress)}%</span>
+                  <span>56%</span>
                 </div>
                 <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500 ease-out" 
-                    style={{ width: `${progress}%` }}
+                    style={{ width: '56%' }}
                   ></div>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {progress < 70 ? "Implementing new features and performance improvements..." : "Finalizing updates and running tests..."}
+                  Implementing new features and performance improvements...
                 </p>
               </div>
             </div>
@@ -160,25 +160,6 @@ export default function MaintenancePage() {
               </ul>
             </div>
           </div>
-
-          {/* Contact Card */}
-          {/* <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-5 transition-all hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-500">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30">
-                  <Mail className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 dark:text-white">Need immediate assistance?</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Contact our support team</p>
-                </div>
-              </div>
-              <button className="flex items-center gap-1 text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors group">
-                Contact Support 
-                <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
-          </div> */}
         </div>
 
         {/* Footer */}
