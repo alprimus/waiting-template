@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { Wrench, Clock} from 'lucide-react';
+import { Wrench, Clock, Rocket,} from 'lucide-react';
 
 export default function MaintenancePage() {
   const [countdown, setCountdown] = useState({
@@ -12,10 +12,11 @@ export default function MaintenancePage() {
 
   const [isHovered, setIsHovered] = useState(false);
   const [progress, setProgress] = useState(56);
+  const [activeFeature, setActiveFeature] = useState(0);
 
   // Set your maintenance end date here
   useEffect(() => {
-    const maintenanceEnd = new Date('2025-07-21T14:50:00').getTime();
+    const maintenanceEnd = new Date('2025-07-17T19:50:00').getTime();
     
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -45,6 +46,33 @@ export default function MaintenancePage() {
     return () => clearInterval(interval);
   }, []);
 
+  const features = [
+    {
+      title: "Performance upgrades",
+      desc: "Faster page loads with optimized assets and code splitting",
+      color: "bg-emerald-500",
+      details: "We're implementing advanced caching strategies and reducing bundle sizes by 40% for lightning-fast page loads."
+    },
+    {
+      title: "New dashboard",
+      desc: "Completely redesigned user interface",
+      color: "bg-teal-500",
+      details: "The new dashboard features customizable widgets, dark mode support, and intuitive navigation for better productivity."
+    },
+    {
+      title: "Security updates",
+      desc: "Enhanced protection and data privacy",
+      color: "bg-green-500",
+      details: "We've upgraded to the latest security protocols including OAuth 2.1 and added end-to-end encryption for sensitive data."
+    },
+    {
+      title: "Mobile experience",
+      desc: "Improved responsiveness across devices",
+      color: "bg-lime-500",
+      details: "The new adaptive layout ensures perfect display on all screen sizes with touch-friendly controls and gestures."
+    }
+  ];
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-emerald-50 dark:from-gray-900 dark:to-emerald-900 flex flex-col items-center justify-center p-4 transition-colors duration-300">
       <div 
@@ -71,14 +99,14 @@ export default function MaintenancePage() {
         <div className="p-6 md:p-8 space-y-8">
           <div className="flex flex-col lg:flex-row gap-6">
             {/* Main Message */}
-            <div className="space-y-6">
+            <div className="lg:w-2/3 space-y-6">
               <div className="space-y-4">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                   Our website is currently undergoing scheduled maintenance
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300">
                   We apologize for the inconvenience but we're performing some maintenance to improve your experience. 
-                  We'll be back online shortly! The maintenance is expected to complete by July 21, 2025 at 3:00 PM UTC.
+                  We'll be back online shortly! The maintenance is expected to complete by July 17, 2025 at 8:00 PM UTC.
                 </p>
               </div>
 
@@ -144,6 +172,43 @@ export default function MaintenancePage() {
                   </li>
                 </ul>
               </div>
+            </div>
+
+            {/* Updates Card */}
+            <div className="lg:w-1/3 space-y-6">
+              <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-5 transition-all hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-500">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <Rocket className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                  What's New 
+                </h3>
+                <div className="flex flex-col gap-2 mb-4">
+                  {features.map((item, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setActiveFeature(index)}
+                      className={`text-left p-3 rounded-md transition-all ${activeFeature === index ? 'bg-emerald-50 dark:bg-gray-600 border border-emerald-200 dark:border-emerald-700' : 'hover:bg-gray-100 dark:hover:bg-gray-600'}`}
+                    >
+                      <div className="flex items-start gap-2">
+                        <div className={`mt-1 h-2 w-2 rounded-full ${item.color} transition-all`}></div>
+                        <div>
+                          <p className={`text-sm font-medium ${activeFeature === index ? 'text-emerald-700 dark:text-emerald-300' : 'text-gray-900 dark:text-white'}`}>
+                            {item.title}
+                          </p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                <div className="bg-white dark:bg-gray-600 p-3 rounded-md border border-gray-200 dark:border-gray-500">
+                  <p className="text-sm text-gray-700 dark:text-gray-200">
+                    {features[activeFeature].details}
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
