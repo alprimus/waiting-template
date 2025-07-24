@@ -15,7 +15,7 @@ export default function MaintenancePage() {
 
   // Set your maintenance end date here
   useEffect(() => {
-    const maintenanceEnd = new Date('2025-07-21T14:50:00').getTime();
+    const maintenanceEnd = new Date('2025-07-24T21:30:00').getTime();
     
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -133,10 +133,6 @@ export default function MaintenancePage() {
                   <li className="flex items-center gap-2">
                     <span className={`h-2 w-2 rounded-full ${progress > 20 ? 'bg-emerald-500' : 'bg-gray-300'}`}></span>
                     <span className="text-sm text-gray-600 dark:text-gray-300">Backend services updated</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className={`h-2 w-2 rounded-full ${progress > 50 ? 'bg-emerald-500' : 'bg-gray-300'}`}></span>
-                    <span className="text-sm text-gray-600 dark:text-gray-300">Database migration completed</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className={`h-2 w-2 rounded-full ${progress > 80 ? 'bg-emerald-500' : 'bg-gray-300'}`}></span>
