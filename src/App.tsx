@@ -15,7 +15,7 @@ export default function MaintenancePage() {
 
   // Set your maintenance end date here
   useEffect(() => {
-    const maintenanceEnd = new Date('2025-07-27T03:30:00').getTime();
+    const maintenanceEnd = new Date('2025-07-27T13:00:00').getTime();
     
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -78,7 +78,7 @@ export default function MaintenancePage() {
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300">
                   We apologize for the inconvenience but we're performing some maintenance to improve your experience. 
-                  We'll be back online shortly! The maintenance is expected to complete by July 26, 2025 at 10:00 PM UTC.
+                  We'll be back online shortly! The maintenance is expected to complete by July 27, 2025 at 07:30 AM UTC.
                 </p>
               </div>
 
