@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { Wrench, Clock} from 'lucide-react';
+import { Wrench, Clock } from 'lucide-react';
 
 export default function MaintenancePage() {
   const [countdown, setCountdown] = useState({
@@ -9,20 +9,47 @@ export default function MaintenancePage() {
     minutes: 0,
     seconds: 0
   });
-
   const [isHovered, setIsHovered] = useState(false);
   const [progress, setProgress] = useState(56);
 
-  // Set your maintenance end date here
   useEffect(() => {
     const maintenanceEnd = new Date('2025-07-28T10:00:00').getTime();
-    
-    const interval = setInterval(() => {
+
+    const checkStatusAndRedirect = async () => {
+      try {
+        const response = await fetch("https://alprimus.com/login", {
+          method: 'GET',
+          cache: 'no-store' // Ensure fresh status check
+        });
+        if (response.status === 200) {
+          window.location.href = "https://alprimus.com/login";
+          return true;
+        }
+        return false;
+      } catch (error) {
+        console.error('Status check failed:', error);
+        return false;
+      }
+    };
+
+    // Initial check on mount
+    checkStatusAndRedirect();
+
+    const interval = setInterval(async () => {
+      // Check site status
+      const isSiteUp = await checkStatusAndRedirect();
+      if (isSiteUp) {
+        clearInterval(interval);
+        return;
+      }
+
       const now = new Date().getTime();
       const distance = maintenanceEnd - now;
       
       if (distance <= 0) {
         clearInterval(interval);
+        // Try one final redirect when maintenance period ends
+        await checkStatusAndRedirect();
         return;
       }
       
@@ -43,7 +70,7 @@ export default function MaintenancePage() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [progress]);
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-emerald-50 dark:from-gray-900 dark:to-emerald-900 flex flex-col items-center justify-center p-4 transition-colors duration-300">
@@ -109,20 +136,19 @@ export default function MaintenancePage() {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
                   <span>Progress</span>
-                  <span>91%</span>
+                  <span>{Math.round(progress)}%</span>
                 </div>
                 <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500 ease-out" 
-                    style={{ width: `91%` }}
+                    style={{ width: `${Math.round(progress)}%` }}
                   ></div>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {/* {progress < 40 ? "Initializing update process..." : 
+                  {progress < 40 ? "Initializing update process..." : 
                    progress < 70 ? "Implementing new features and performance improvements..." : 
                    progress < 90 ? "Running system tests and optimizations..." : 
-                   "Finalizing updates and preparing for launch..."} */}
-                   Finalizing updates and preparing for launch...
+                   "Finalizing updates and preparing for launch..."}
                 </p>
               </div>
 
