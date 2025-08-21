@@ -15,7 +15,7 @@ export default function MaintenancePage() {
 
   // Set your maintenance end date here
   useEffect(() => {
-    const maintenanceEnd = new Date('2025-08-20T10:00:00').getTime();
+    const maintenanceEnd = new Date('2025-08-21T22:00:00').getTime();
     
     const interval = setInterval(() => {
       const now = new Date().getTime();
