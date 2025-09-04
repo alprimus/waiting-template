@@ -17,7 +17,7 @@ const toUTCString = (d:string) =>
     .replace(/, (\d)/, " at $1") + " UTC";
 
 export default function MaintenancePage() {
-  const maintenanceEndUTC = "2025-09-04T10:30:00Z"; 
+  const maintenanceEndUTC = "2025-09-04T20:30:00Z"; 
 
   const [countdown, setCountdown] = useState({
     days: 0,
