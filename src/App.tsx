@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Wrench, Clock } from "lucide-react";
 
 // helper to format UTC date for display
-const toUTCString = (d) =>
+const toUTCString = (d:string) =>
   new Date(d)
     .toLocaleString("en-US", {
       month: "long",
